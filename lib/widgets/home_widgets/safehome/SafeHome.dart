@@ -15,9 +15,9 @@ import 'package:geolocator/geolocator.dart';
 
 import 'package:permission_handler/permission_handler.dart';
 
-import 'package:women_safety/db/db_services.dart';
+import 'package:women_safeties/db/db_services.dart';
 
-import 'package:women_safety/model/contactsm.dart';
+import 'package:women_safeties/model/contactsm.dart';
 
 
 class SafeHome extends StatefulWidget {

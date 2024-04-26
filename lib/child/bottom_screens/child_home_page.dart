@@ -3,27 +3,35 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
+
 import 'package:fluttertoast/fluttertoast.dart';
+
 
 import 'package:geocoding/geocoding.dart';
 
+
 import 'package:geolocator/geolocator.dart';
+
 
 import 'package:permission_handler/permission_handler.dart';
 
-import 'package:women_safety/db/db_services.dart';
 
-import 'package:women_safety/model/contactsm.dart';
+import 'package:women_safeties/db/db_services.dart';
 
-import 'package:women_safety/widgets/home_widgets/CustomCarouel.dart';
 
-import 'package:women_safety/widgets/home_widgets/custom_appBar.dart';
+import 'package:women_safeties/model/contactsm.dart';
 
-import 'package:women_safety/widgets/home_widgets/emergency.dart';
+import 'package:women_safeties/widgets/home_widgets/CustomCarouel.dart';
 
-import 'package:women_safety/widgets/home_widgets/safehome/SafeHome.dart';
 
-import 'package:women_safety/widgets/live_safe.dart';
+import 'package:women_safeties/widgets/home_widgets/custom_appBar.dart';
+
+
+import 'package:women_safeties/widgets/home_widgets/emergency.dart';
+
+import 'package:women_safeties/widgets/home_widgets/safehome/SafeHome.dart';
+
+import 'package:women_safeties/widgets/live_safe.dart';
 
 
 class HomeScreen extends StatefulWidget {
@@ -39,43 +47,62 @@ class _HomeScreenState extends State<HomeScreen> {
 
   // const HomeScreen({super.key});
 
+
   int qIndex = 0;
+
 
   Position? _curentPosition;
 
+
   String? _curentAddress;
+
 
   LocationPermission? permission;
 
+
   _getPermission() async => await [Permission.sms].request();
+
 
   _isPermissionGranted() async => await Permission.sms.status.isGranted;
 
+
   // _sendSms(String phoneNumber, String message, {int? simSlot}) async {
+
 
   //   SmsStatus result = await BackgroundSms.sendMessage(
 
+
   //       phoneNumber: phoneNumber, message: message, simSlot: 1);
+
 
   //   if (result == SmsStatus.sent) {
 
+
   //     print("Sent");
+
 
   //     Fluttertoast.showToast(msg: "send");
 
+
   //   } else {
+
 
   //     Fluttertoast.showToast(msg: "failed");
 
+
   //   }
+
 
   // }
 
+
   String _currentCity = "";
+
 
   checkLocationPermission() async {
 
     bool permissionGranted = await _requestLocationPermission();
+
 
     setState(() {
 
@@ -101,6 +128,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
           desiredAccuracy: LocationAccuracy.high);
 
+
       List<Placemark> placemarks =
 
           await placemarkFromCoordinates(position.latitude, position.longitude);
@@ -110,11 +138,13 @@ class _HomeScreenState extends State<HomeScreen> {
 
         Placemark placemark = placemarks[0];
 
+
         setState(() {
 
           _currentCity = placemark.locality ?? 'Unknown';
 
         });
+
 
         print(_currentCity);
 
@@ -131,9 +161,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
   bool _locationPermissionGranted = false;
 
+
   Future<bool> _requestLocationPermission() async {
 
     var status = await Permission.location.request();
+
 
     return status == PermissionStatus.granted;
 
@@ -148,9 +180,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
           desiredAccuracy: LocationAccuracy.high);
 
+
       print('Current Location: $position');
 
+
       _getCurrentAddress();
+
 
       // Handle the obtained location as needed
 
@@ -177,11 +212,13 @@ class _HomeScreenState extends State<HomeScreen> {
 
       Placemark place = placemarks[0];
 
+
       setState(() {
 
         _curentAddress =
 
             "${place.locality},${place.postalCode},${place.street},";
+
 
         print(_curentAddress);
 
@@ -200,6 +237,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     Random random = Random();
 
+
     setState(() {
 
       qIndex = random.nextInt(6);
@@ -217,6 +255,7 @@ class _HomeScreenState extends State<HomeScreen> {
     String messageBody =
 
         "https://maps.google.com/?daddr=${_curentPosition!.latitude},${_curentPosition!.longitude}";
+
 
     if (await _isPermissionGranted()) {
 
@@ -241,9 +280,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
     getRandomQuote();
 
+
     super.initState();
 
+
     _getPermission();
+
 
     // _getCurrentLocation();
 
@@ -252,6 +294,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
 
     // To close: detector.stopListening();
+
 
     // ShakeDetector.waitForStart() waits for user to call detector.startListening();
 

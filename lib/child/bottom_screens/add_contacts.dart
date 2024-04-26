@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 
+
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
+
 
 import 'package:fluttertoast/fluttertoast.dart';
 
+
 import 'package:sqflite/sqflite.dart';
 
-import 'package:women_safety/child/bottom_screens/contacts_page.dart';
+import 'package:women_safeties/child/bottom_screens/contacts_page.dart';
 
-import 'package:women_safety/components/PrimaryButton.dart';
+import 'package:women_safeties/components/PrimaryButton.dart';
 
-import 'package:women_safety/db/db_services.dart';
+import 'package:women_safeties/db/db_services.dart';
 
-import 'package:women_safety/model/contactsm.dart';
+import 'package:women_safeties/model/contactsm.dart';
 
 
 class AddContactsPage extends StatefulWidget {
@@ -31,7 +34,9 @@ class _AddContactsPageState extends State<AddContactsPage> {
 
   DatabaseHelper databasehelper = DatabaseHelper();
 
+
   List<TContact>? contactList;
+
 
   int count = 0;
 
@@ -40,17 +45,20 @@ class _AddContactsPageState extends State<AddContactsPage> {
 
     Future<Database> dbFuture = databasehelper.initializeDatabase();
 
+
     dbFuture.then((database) {
 
       Future<List<TContact>> contactListFuture =
 
           databasehelper.getContactList();
 
+
       contactListFuture.then((value) {
 
         setState(() {
 
           this.contactList = value;
+
 
           this.count = value.length;
 
@@ -67,9 +75,11 @@ class _AddContactsPageState extends State<AddContactsPage> {
 
     int result = await databasehelper.deleteContact(contact.id);
 
+
     if (result != 0) {
 
       Fluttertoast.showToast(msg: "contact removed succesfully");
+
 
       showList();
 
@@ -104,11 +114,12 @@ class _AddContactsPageState extends State<AddContactsPage> {
 
     }
 
+
     return SafeArea(
 
       child: Container(
 
-          padding: EdgeInsets.all(12),
+          padding: const EdgeInsets.all(12),
 
           child: Column(
 
@@ -130,6 +141,7 @@ class _AddContactsPageState extends State<AddContactsPage> {
 
                         ));
 
+
                     if (result == true) {
 
                       showList();
@@ -144,7 +156,9 @@ class _AddContactsPageState extends State<AddContactsPage> {
 
                   // shrinkWrap: true,
 
+
                   itemCount: count,
+
 
                   itemBuilder: (BuildContext context, int index) {
 

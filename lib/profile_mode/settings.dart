@@ -8,10 +8,9 @@ import 'package:flutter/material.dart';
 
 
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:women_safeties/child/bottom_page.dart';
+import 'package:women_safeties/components/PrimaryButton.dart';
 
-import 'package:women_safety/child/bottom_page.dart';
-
-import 'package:women_safety/components/PrimaryButton.dart';
 
 
 import '../child/bottom_screens/profile_page.dart';

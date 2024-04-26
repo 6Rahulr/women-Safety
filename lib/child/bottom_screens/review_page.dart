@@ -3,17 +3,20 @@ import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+
 import 'package:flutter/material.dart';
+
 
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
+
 import 'package:fluttertoast/fluttertoast.dart';
 
-import 'package:women_safety/components/PrimaryButton.dart';
+import 'package:women_safeties/components/PrimaryButton.dart';
 
-import 'package:women_safety/components/custom_textfield.dart';
+import 'package:women_safeties/components/custom_textfield.dart';
 
-import 'package:women_safety/utils/constants.dart';
+import 'package:women_safeties/utils/constants.dart';
 
 
 class ReviewPage extends StatefulWidget {
@@ -29,9 +32,12 @@ class _ReviewPageState extends State<ReviewPage> {
 
   TextEditingController locationC = TextEditingController();
 
+
   TextEditingController viewsC = TextEditingController();
 
+
   bool isSaving = false;
+
 
   double? ratings;
 
@@ -134,6 +140,7 @@ class _ReviewPageState extends State<ReviewPage> {
 
                     saveReview();
 
+
                     Navigator.pop(context);
 
                   }),
@@ -165,6 +172,7 @@ class _ReviewPageState extends State<ReviewPage> {
 
     });
 
+
     await FirebaseFirestore.instance.collection('reviews').add({
 
       'location': locationC.text,
@@ -178,6 +186,7 @@ class _ReviewPageState extends State<ReviewPage> {
       setState(() {
 
         isSaving = false;
+
 
         Fluttertoast.showToast(msg: 'review uploaded successfully');
 
@@ -252,6 +261,7 @@ class _ReviewPageState extends State<ReviewPage> {
                           itemBuilder: (BuildContext context, int index) {
 
                             final data = snapshot.data!.docs[index];
+
 
                             return Padding(
 

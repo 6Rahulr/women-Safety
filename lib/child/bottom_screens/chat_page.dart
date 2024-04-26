@@ -9,14 +9,11 @@ import 'package:flutter/material.dart';
 
 import 'package:fluttertoast/fluttertoast.dart';
 
+import 'package:women_safeties/chat_module/chat_screen.dart';
 
-import 'package:women_safety/chat_module/chat_screen.dart';
+import 'package:women_safeties/child/child_login_screen.dart';
 
-
-import 'package:women_safety/child/child_login_screen.dart';
-
-
-import 'package:women_safety/parent/parent_home_screen.dart';
+import 'package:women_safeties/parent/parent_home_screen.dart';
 
 
 import '../../utils/constants.dart';

@@ -6,10 +6,9 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 
-import 'package:women_safety/utils/quotes.dart';
+import 'package:women_safeties/utils/quotes.dart';
 
-
-import 'package:women_safety/widgets/home_widgets/safewebview.dart';
+import 'package:women_safeties/widgets/home_widgets/safewebview.dart';
 
 
 class CustomCarouel extends StatelessWidget {

@@ -1,12 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+
 import 'package:firebase_auth/firebase_auth.dart';
+
 
 import 'package:flutter/material.dart';
 
-import 'package:women_safety/chat_module/chat_screen.dart';
+import 'package:women_safeties/chat_module/chat_screen.dart';
 
-import 'package:women_safety/utils/constants.dart';
+import 'package:women_safeties/utils/constants.dart';
 
 
 import '../child/child_login_screen.dart';
@@ -45,6 +47,7 @@ class ParentHomeScreen extends StatelessWidget {
 
                         await FirebaseAuth.instance.signOut();
 
+
                         goTo(context, LoginScreen());
 
                       } on FirebaseAuthException catch (e) {
@@ -71,7 +74,9 @@ class ParentHomeScreen extends StatelessWidget {
 
         backgroundColor: Colors.pink,
 
+
         // backgroundColor: Color.fromARGB(255, 250, 163, 192),
+
 
         title: Text("SELECT CHILD"),
 
@@ -99,6 +104,7 @@ class ParentHomeScreen extends StatelessWidget {
 
           }
 
+
           return ListView.builder(
 
             itemCount: snapshot.data!.docs.length,
@@ -106,6 +112,7 @@ class ParentHomeScreen extends StatelessWidget {
             itemBuilder: (BuildContext context, int index) {
 
               final d = snapshot.data!.docs[index];
+
 
               return Padding(
 
@@ -132,6 +139,7 @@ class ParentHomeScreen extends StatelessWidget {
                               friendId: d.id,
 
                               friendName: d['name']));
+
 
                       // Navigator.push(context, MaterialPa)
 

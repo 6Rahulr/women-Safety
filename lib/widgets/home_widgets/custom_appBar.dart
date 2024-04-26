@@ -1,17 +1,21 @@
 import 'package:flutter/cupertino.dart';
 
+
 import 'package:flutter/material.dart';
 
-import 'package:women_safety/utils/quotes.dart';
+import 'package:women_safeties/utils/quotes.dart';
 
 
 class CustomAppBar extends StatelessWidget {
 
   // const CustomAppBar({super.key});
 
+
   Function? onTap;
 
+
   int? quoteIndex;
+
 
   CustomAppBar({this.onTap, this.quoteIndex});
 

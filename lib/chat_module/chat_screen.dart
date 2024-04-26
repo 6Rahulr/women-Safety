@@ -1,12 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+
 import 'package:flutter/material.dart';
+
 
 import 'package:fluttertoast/fluttertoast.dart';
 
-import 'package:women_safety/chat_module/message_text_field.dart';
 
-import 'package:women_safety/chat_module/singleMessage.dart';
+import 'package:women_safeties/chat_module/message_text_field.dart';
+
+
+import 'package:women_safeties/chat_module/singleMessage.dart';
 
 
 import '../utils/constants.dart';
@@ -16,7 +20,9 @@ class ChatScreen extends StatefulWidget {
 
   final String currentUserId;
 
+
   final String friendId;
+
 
   final String friendName;
 
@@ -42,6 +48,7 @@ class ChatScreen extends StatefulWidget {
 class _ChatScreenState extends State<ChatScreen> {
 
   String? type;
+
 
   String? myname;
 
@@ -77,6 +84,7 @@ class _ChatScreenState extends State<ChatScreen> {
   void initState() {
 
     getStatus();
+
 
     super.initState();
 
@@ -139,13 +147,14 @@ class _ChatScreenState extends State<ChatScreen> {
 
                               : "TALK WITH PARENT",
 
-                          style: TextStyle(fontSize: 30),
+                          style: const TextStyle(fontSize: 30),
 
                         ),
 
                       );
 
                     }
+
 
                     return Container(
 
@@ -159,7 +168,9 @@ class _ChatScreenState extends State<ChatScreen> {
 
                               widget.currentUserId;
 
+
                           final data = snapshot.data!.docs[index];
+
 
                           return Dismissible(
 
@@ -182,6 +193,7 @@ class _ChatScreenState extends State<ChatScreen> {
                                   .doc(data.id)
 
                                   .delete();
+
 
                               await FirebaseFirestore.instance
 
@@ -230,6 +242,7 @@ class _ChatScreenState extends State<ChatScreen> {
                     );
 
                   }
+
 
                   return progressIndicator(context);
 

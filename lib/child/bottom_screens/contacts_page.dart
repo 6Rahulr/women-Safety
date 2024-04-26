@@ -1,16 +1,19 @@
 import 'package:contacts_service/contacts_service.dart';
 
+
 import 'package:flutter/material.dart';
+
 
 import 'package:fluttertoast/fluttertoast.dart';
 
+
 import 'package:permission_handler/permission_handler.dart';
 
-import 'package:women_safety/db/db_services.dart';
+import 'package:women_safeties/db/db_services.dart';
 
-import 'package:women_safety/model/contactsm.dart';
+import 'package:women_safeties/model/contactsm.dart';
 
-import 'package:women_safety/utils/constants.dart';
+import 'package:women_safeties/utils/constants.dart';
 
 
 class ContactsPage extends StatefulWidget {
@@ -29,18 +32,22 @@ class _ContactsPageState extends State<ContactsPage> {
 
   List<Contact> contacts = [];
 
+
   List<Contact> contactsFiltered = [];
+
 
   DatabaseHelper _databaseHelper = DatabaseHelper();
 
 
   TextEditingController searchController = TextEditingController();
 
+
   @override
 
   void initState() {
 
     super.initState();
+
 
     askPermissions();
 
@@ -62,7 +69,9 @@ class _ContactsPageState extends State<ContactsPage> {
 
     List<Contact> _contacts = [];
 
+
     _contacts.addAll(contacts);
+
 
     if (searchController.text.isNotEmpty) {
 
@@ -70,11 +79,15 @@ class _ContactsPageState extends State<ContactsPage> {
 
         String searchTerm = searchController.text.toLowerCase();
 
+
         String searchTermFlattren = flattenPhoneNumber(searchTerm);
+
 
         String contactName = element.displayName ?? "";
 
+
         bool nameMatch = contactName.contains(searchTerm);
+
 
         if (nameMatch == true) {
 
@@ -82,25 +95,30 @@ class _ContactsPageState extends State<ContactsPage> {
 
         }
 
+
         if (searchTermFlattren.isEmpty) {
 
           return false;
 
         }
 
+
         var phone = element.phones!.firstWhere((p) {
 
           String phnFLattered = flattenPhoneNumber(p.value!);
 
+
           return phnFLattered.contains(searchTermFlattren);
 
         });
+
 
         return phone.value != null;
 
       });
 
     }
+
 
     setState(() {
 
@@ -115,9 +133,11 @@ class _ContactsPageState extends State<ContactsPage> {
 
     PermissionStatus permissionStatus = await getContactsPermissions();
 
+
     if (permissionStatus == PermissionStatus.granted) {
 
       getAllContacts();
+
 
       searchController.addListener(() {
 
@@ -153,11 +173,13 @@ class _ContactsPageState extends State<ContactsPage> {
 
     PermissionStatus permission = await Permission.contacts.status;
 
+
     if (permission != PermissionStatus.granted &&
 
         permission != PermissionStatus.permanentlyDenied) {
 
       PermissionStatus permissionStatus = await Permission.contacts.request();
+
 
       return permissionStatus;
 
@@ -176,6 +198,7 @@ class _ContactsPageState extends State<ContactsPage> {
 
         await ContactsService.getContacts(withThumbnails: false);
 
+
     setState(() {
 
       contacts = _contacts;
@@ -191,7 +214,9 @@ class _ContactsPageState extends State<ContactsPage> {
 
     bool isSearchIng = searchController.text.isNotEmpty;
 
+
     bool listItemExit = (contactsFiltered.length > 0 || contacts.length > 0);
+
 
     return Scaffold(
 
@@ -245,13 +270,17 @@ class _ContactsPageState extends State<ContactsPage> {
 
                                   : contacts[index];
 
+
                               return ListTile(
 
                                 title: Text(contact.displayName ?? ""),
 
+
                                 // subtitle:Text(contact.phones!.elementAt(0)
 
+
                                 // .value!) ,
+
 
                                 leading: contact.avatar != null &&
 
@@ -275,6 +304,7 @@ class _ContactsPageState extends State<ContactsPage> {
 
                                       ),
 
+
                                 onTap: () {
 
                                   if (contact.phones!.length > 0) {
@@ -283,7 +313,9 @@ class _ContactsPageState extends State<ContactsPage> {
 
                                         contact.phones!.elementAt(0).value!;
 
+
                                     final String name = contact.displayName!;
+
 
                                     _addContact(TContact(phoneNum, name));
 
@@ -328,6 +360,7 @@ class _ContactsPageState extends State<ContactsPage> {
 
     int result = await _databaseHelper.insertContact(newContact);
 
+
     if (result != 0) {
 
       Fluttertoast.showToast(msg: "contact added successfully");
@@ -337,6 +370,7 @@ class _ContactsPageState extends State<ContactsPage> {
       Fluttertoast.showToast(msg: "Failed to add contacts");
 
     }
+
 
     Navigator.of(context).pop(true);
 

@@ -1,24 +1,26 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+
 import 'package:firebase_auth/firebase_auth.dart';
+
 
 import 'package:flutter/material.dart';
 
-import 'package:women_safety/child/bottom_page.dart';
+import 'package:women_safeties/child/bottom_page.dart';
 
-import 'package:women_safety/child/register_child.dart';
+import 'package:women_safeties/child/register_child.dart';
 
-import 'package:women_safety/components/PrimaryButton.dart';
+import 'package:women_safeties/components/PrimaryButton.dart';
 
-import 'package:women_safety/components/SecondaryButton.dart';
+import 'package:women_safeties/components/SecondaryButton.dart';
 
-import 'package:women_safety/components/custom_textfield.dart';
+import 'package:women_safeties/components/custom_textfield.dart';
 
-import 'package:women_safety/db/share_pref.dart';
+import 'package:women_safeties/db/share_pref.dart';
 
-import 'package:women_safety/parent/parent_register_screen.dart';
+import 'package:women_safeties/parent/parent_register_screen.dart';
 
-import 'package:women_safety/utils/constants.dart';
+import 'package:women_safeties/utils/constants.dart';
 
 
 import '../parent/parent_home_screen.dart';
@@ -37,9 +39,12 @@ class _LoginScreenState extends State<LoginScreen> {
 
   bool isPasswordShown = true;
 
+
   final _formKey = GlobalKey<FormState>();
 
+
   final _formData = Map<String, Object>();
+
 
   bool isLoading = false;
 
@@ -109,15 +114,18 @@ class _LoginScreenState extends State<LoginScreen> {
 
             print("====> ${value['type']}");
 
+
             if (value['type'] == 'parent') {
 
               MySharedPrefference.saveUserType('parent');
+
 
               goTo(context, ParentHomeScreen());
 
             } else {
 
               MySharedPrefference.saveUserType('child');
+
 
               goTo(context, BottomPage());
 
@@ -146,11 +154,13 @@ class _LoginScreenState extends State<LoginScreen> {
 
         dialogueBox(context, 'No user found for that email.');
 
+
         print('No user found for that email.');
 
       } else if (e.code == 'wrong-password') {
 
         dialogueBox(context, 'Wrong password provided for that user.');
+
 
         print('Wrong password provided for that user.');
 
@@ -160,6 +170,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
 
     print(_formData['email']);
+
 
     print(_formData['password']);
 
@@ -296,6 +307,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                                     }
 
+
                                     return null;
 
                                   },
@@ -333,6 +345,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     onPressed: () {
 
                                       // progressIndicator(context);
+
 
                                       if (_formKey.currentState!.validate()) {
 

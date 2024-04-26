@@ -3,29 +3,36 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+
 import 'package:firebase_auth/firebase_auth.dart';
+
 
 import 'package:firebase_storage/firebase_storage.dart';
 
+
 import 'package:flutter/material.dart';
+
 
 import 'package:flutter/services.dart';
 
+
 import 'package:fluttertoast/fluttertoast.dart';
+
 
 import 'package:image_picker/image_picker.dart';
 
+
 import 'package:uuid/uuid.dart';
 
-import 'package:women_safety/child/bottom_page.dart';
+import 'package:women_safeties/child/bottom_page.dart';
 
-import 'package:women_safety/child/child_login_screen.dart';
+import 'package:women_safeties/child/child_login_screen.dart';
 
-import 'package:women_safety/components/PrimaryButton.dart';
+import 'package:women_safeties/components/PrimaryButton.dart';
 
-import 'package:women_safety/components/custom_textfield.dart';
+import 'package:women_safeties/components/custom_textfield.dart';
 
-import 'package:women_safety/utils/constants.dart';
+import 'package:women_safeties/utils/constants.dart';
 
 
 class CheckUserStatusBeforeChatOnProfile extends StatelessWidget {
@@ -56,6 +63,7 @@ class CheckUserStatusBeforeChatOnProfile extends StatelessWidget {
           } else {
 
             Fluttertoast.showToast(msg: 'please login first');
+
 
             return LoginScreen();
 
@@ -88,22 +96,30 @@ class _ProfilePageState extends State<ProfilePage> {
 
   TextEditingController nameC = TextEditingController();
 
+
   TextEditingController guardianEmailC = TextEditingController();
 
+
   TextEditingController childEmailC = TextEditingController();
+
 
   TextEditingController phoneC = TextEditingController();
 
 
   final key = GlobalKey<FormState>();
 
+
   String? id;
+
 
   String? profilePic;
 
+
   String? downloadUrl;
 
+
   bool isSaving = false;
+
 
   getDate() async {
 
@@ -121,13 +137,18 @@ class _ProfilePageState extends State<ProfilePage> {
 
         nameC.text = value.docs.first['name'];
 
+
         childEmailC.text = value.docs.first['childEmail'];
+
 
         guardianEmailC.text = value.docs.first['guardiantEmail'];
 
+
         phoneC.text = value.docs.first['phone'];
 
+
         id = value.docs.first.id;
+
 
         profilePic = value.docs.first['profilePic'];
 
@@ -143,6 +164,7 @@ class _ProfilePageState extends State<ProfilePage> {
   void initState() {
 
     super.initState();
+
 
     getDate();
 
@@ -206,6 +228,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                       source: ImageSource.gallery,
 
                                       imageQuality: 50);
+
 
                               if (pickImage != null) {
 
@@ -285,6 +308,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
                               }
 
+
                               return null;
 
                             },
@@ -308,6 +332,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 return 'please enter your updated name';
 
                               }
+
 
                               return null;
 
@@ -333,6 +358,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
                               }
 
+
                               return null;
 
                             },
@@ -357,6 +383,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
                               }
 
+
                               return null;
 
                             },
@@ -376,6 +403,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   SystemChannels.textInput
 
                                       .invokeMethod('TextInput.hide');
+
 
                                   profilePic == null
 
@@ -410,17 +438,21 @@ class _ProfilePageState extends State<ProfilePage> {
 
       final filenName = Uuid().v4();
 
+
       final Reference fbStorage =
 
           FirebaseStorage.instance.ref('profile').child(filenName);
 
+
       final UploadTask uploadTask = fbStorage.putFile(File(filePath));
+
 
       await uploadTask.then((p0) async {
 
         downloadUrl = await fbStorage.getDownloadURL();
 
       });
+
 
       return downloadUrl;
 
@@ -441,6 +473,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
     });
 
+
     uploadImage(profilePic!).then((value) {
 
       Map<String, dynamic> data = {
@@ -451,6 +484,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
       };
 
+
       FirebaseFirestore.instance
 
           .collection('users')
@@ -459,9 +493,11 @@ class _ProfilePageState extends State<ProfilePage> {
 
           .update(data);
 
+
       setState(() {
 
         isSaving = false;
+
 
         goTo(context, BottomPage());
 

@@ -1,18 +1,24 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+
 import 'package:firebase_auth/firebase_auth.dart';
+
 
 import 'package:flutter/material.dart';
 
-import 'package:women_safety/child/child_login_screen.dart';
+import 'package:women_safeties/child/child_login_screen.dart';
 
-import 'package:women_safety/utils/constants.dart';
+import 'package:women_safeties/utils/constants.dart';
+
 
 import '../components/PrimaryButton.dart';
 
+
 import '../components/SecondaryButton.dart';
 
+
 import '../components/custom_textfield.dart';
+
 
 import '../model/user_model.dart';
 
@@ -30,12 +36,15 @@ class _RegisterParentScreenState extends State<RegisterParentScreen> {
 
   bool isPasswordShown = true;
 
+
   bool isRetypePasswordShown = true;
 
 
   final _formKey = GlobalKey<FormState>();
 
+
   final _formData = Map<String, Object>();
+
 
   bool isLoading = false;
 
@@ -43,6 +52,7 @@ class _RegisterParentScreenState extends State<RegisterParentScreen> {
   _onSubmit() async {
 
     _formKey.currentState!.save();
+
 
     if (_formData['password'] != _formData['rpassword']) {
 
@@ -52,6 +62,7 @@ class _RegisterParentScreenState extends State<RegisterParentScreen> {
 
       progressIndicator(context);
 
+
       try {
 
         setState(() {
@@ -59,6 +70,7 @@ class _RegisterParentScreenState extends State<RegisterParentScreen> {
           isLoading = true;
 
         });
+
 
         UserCredential userCredential = await FirebaseAuth.instance
 
@@ -68,13 +80,16 @@ class _RegisterParentScreenState extends State<RegisterParentScreen> {
 
                 password: _formData['password'].toString());
 
+
         if (userCredential.user != null) {
 
           final v = userCredential.user!.uid;
 
+
           DocumentReference<Map<String, dynamic>> db =
 
               FirebaseFirestore.instance.collection('users').doc(v);
+
 
           final user = UserModel(
 
@@ -90,11 +105,14 @@ class _RegisterParentScreenState extends State<RegisterParentScreen> {
 
               type: 'parent');
 
+
           final jsonData = user.toJson();
+
 
           await db.set(jsonData).whenComplete(() {
 
             goTo(context, LoginScreen());
+
 
             setState(() {
 
@@ -114,15 +132,18 @@ class _RegisterParentScreenState extends State<RegisterParentScreen> {
 
         });
 
+
         if (e.code == 'weak-password') {
 
           print('The password provided is too weak.');
+
 
           dialogueBox(context, 'The password provided is too weak.');
 
         } else if (e.code == 'email-already-in-use') {
 
           print('The account already exists for that email.');
+
 
           dialogueBox(context, 'The account already exists for that email.');
 
@@ -132,11 +153,13 @@ class _RegisterParentScreenState extends State<RegisterParentScreen> {
 
         print(e);
 
+
         setState(() {
 
           isLoading = false;
 
         });
+
 
         dialogueBox(context, e.toString());
 
@@ -144,7 +167,9 @@ class _RegisterParentScreenState extends State<RegisterParentScreen> {
 
     }
 
+
     print(_formData['email']);
+
 
     print(_formData['password']);
 
@@ -259,6 +284,7 @@ class _RegisterParentScreenState extends State<RegisterParentScreen> {
 
                                       }
 
+
                                       return null;
 
                                     },
@@ -288,6 +314,7 @@ class _RegisterParentScreenState extends State<RegisterParentScreen> {
                                         return 'enter correct phone';
 
                                       }
+
 
                                       return null;
 
@@ -377,6 +404,7 @@ class _RegisterParentScreenState extends State<RegisterParentScreen> {
 
                                       }
 
+
                                       return null;
 
                                     },
@@ -424,6 +452,7 @@ class _RegisterParentScreenState extends State<RegisterParentScreen> {
                                         return 'enter correct password';
 
                                       }
+
 
                                       return null;
 

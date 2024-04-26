@@ -7,7 +7,7 @@ import 'dart:ui';
 import 'package:background_location/background_location.dart';
 
 
-import 'package:background_sms/background_sms.dart';
+// import 'package:background_sms/background_sms.dart';
 
 
 import 'package:flutter_background_service/flutter_background_service.dart';
@@ -22,7 +22,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 
-import 'package:geolocator/geolocator.dart';
+// import 'package:geolocator/geolocator.dart';
 
 
 import 'package:shake/shake.dart';
@@ -34,10 +34,10 @@ import 'package:telephony/telephony.dart';
 import 'package:vibration/vibration.dart';
 
 
-import 'package:women_safety/db/db_services.dart';
+import 'package:women_safeties/db/db_services.dart';
 
 
-import 'package:women_safety/model/contactsm.dart';
+import 'package:women_safeties/model/contactsm.dart';
 
 
 sendMessage(String messageBody) async {
@@ -75,16 +75,11 @@ Future<void> initializeService() async {
   final service = FlutterBackgroundService();
 
 
-  AndroidNotificationChannel channel = const AndroidNotificationChannel(
+  AndroidNotificationChannel channel = AndroidNotificationChannel(
 
     "script academy",
 
-
-    "foregrounf service",
-
-
-    // "used for imp notifcation",
-
+    "foreground service",
 
     importance: Importance.low,
 
@@ -302,15 +297,11 @@ void onStart(ServiceInstance service) async {
 
           "script academy",
 
-
           "foregrounf service",
 
-
-          // "used for imp notifcation",
-
+          importance: Importance.high,
 
           icon: 'ic_bg_service_small',
-
 
           ongoing: true,
 

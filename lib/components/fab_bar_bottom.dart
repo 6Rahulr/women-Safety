@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:women_safety/utils/constants.dart';
+import 'package:women_safeties/utils/constants.dart';
 
 
 class FABBottomAppBarItem {

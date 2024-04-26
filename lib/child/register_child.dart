@@ -6,13 +6,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
 
-import 'package:women_safety/child/child_login_screen.dart';
+import 'package:women_safeties/child/child_login_screen.dart';
 
+import 'package:women_safeties/model/user_model.dart';
 
-import 'package:women_safety/model/user_model.dart';
-
-
-import 'package:women_safety/utils/constants.dart';
+import 'package:women_safeties/utils/constants.dart';
 
 
 import '../components/PrimaryButton.dart';
